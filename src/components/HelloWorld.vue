@@ -71,11 +71,16 @@
         v-model="date">
       </v-date-picker>
       </v-menu>
+
+      <v-btn variant="tonal" style="margin-left: 20px; margin-right: 40px;" @click="envioEmail" >Enviar por e-mail</v-btn>
+      <v-btn variant="tonal" @click="envioTel" >Enviar por telefone</v-btn>
     </v-card>
   </v-container>
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default {
   data() {
     return {
@@ -103,6 +108,80 @@ export default {
       const dateObj = new Date(this.date);
       return dateObj.toLocaleDateString('pt-BR');
     }
+  },
+
+  methods:{
+    envioEmail() {
+  Swal.fire({
+    title: "Digite o seu e-mail:",
+    input: "email",
+    inputAttributes: {
+      autocapitalize: "off"
+    },
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Enviar e-mail"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Confirme se esse é mesmo o seu e-mail:",
+        text: result.value,
+        showCancelButton: true,
+        showLoaderOnConfirm: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Confirmo"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: "success",
+            title: "Seu e-mail foi enviado com sucesso!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      });
+    }
+  });
+},
+
+envioTel() {
+  Swal.fire({
+    title: "Digite o seu número de telefone:",
+    input: "tel",
+    inputAttributes: {
+      autocapitalize: "off"
+    },
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Enviar SMS"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Confirme se esse é mesmo o seu número:",
+        text: result.value,
+        showCancelButton: true,
+        showLoaderOnConfirm: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Confirmo"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: "success",
+            title: "Seu SMS foi enviado com sucesso!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      });
+    }
+  });
+},
+
+
+
+
+
   }
+
 }
 </script>
