@@ -21,7 +21,7 @@
         v-model="selecao1"
         :items="Object.keys(locais)"
         @update:modelValue="selecao2 = ''; selecao3 = ''"
-        label="Selecione um continente"
+        label="Selecione a cidade:"
         required
         outlined
         density="comfortable"
@@ -35,7 +35,7 @@
       v-model="selecao2"
       :items="selecao1 ? Object.keys(locais[selecao1]) : []"
       @update:modelValu="selecao3=''"
-        label="Selecione um sub"
+        label="Selecione o serviço que deseja realizar:"
         required
         outlined
         density="comfortable"
@@ -45,7 +45,7 @@
       v-model="selecao3"
       :disabled="!selecao2"
       :items="selecao2 ? locais[selecao1][selecao2] : []"
-      label="Selecione um sub do sub"
+      label="Selecione o posto ideal para você:"
       required
       outlined
       density="comfortable"
@@ -83,14 +83,13 @@ export default {
       selecao2:'',
       selecao3:'',
       locais:{
-        'Brasil':{
-        'Ceará': ['Fortaleza', 'Canoa Quebrada', 'Jericoacoara', 'Guaramiranga'],
-        'Piauí': ['Teresina', 'Parnaíba', 'Floriano', 'Água Branca', 'Itaueira'],
-        'Maranhão': ['São Luís', 'Bacabal', 'Imperatriz', 'Barreirinhas'],
+        'Cidade 1':{
+        'Serviço 1': ['Posto A', 'Posto D', 'Posto M', 'Posto J'],
+        'Serviço 2': ['Posto A', 'Posto B', 'Posto C'],
       },
-      'Europa':{
-        'Itália': ['Pizza', 'Macarrão', 'Vinho', 'Massas em geral'],
-        'França': ['Croissant', 'Fondue', 'Baguette', 'Macaron'],
+      'Cidade 2':{
+        'Serviço 3': ['Posto X', 'Posto Y', 'Posto Z'],
+        'Serviço 4': ['Posto H', 'Posto G', 'Posto L', 'Posto J'],
       }
       },
       items: ['Banana', 'Maçã', 'Laranja'],
