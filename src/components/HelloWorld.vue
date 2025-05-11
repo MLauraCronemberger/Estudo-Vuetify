@@ -6,7 +6,7 @@
       </v-card-title>
       <form>
         <v-text-field           
-          label="Name"
+          label="Nome"
           required
           outlined
         ></v-text-field>
@@ -18,27 +18,37 @@
       </form>
 
       <v-select
-        label="Selecione uma fruta"
+        v-model="selecao1"
+        :items="Object.keys(locais)"
+        @update:modelValue="selecao2 = ''; selecao3 = ''"
+        label="Selecione um continente"
         required
         outlined
         density="comfortable"
-        :items="items"
+      ></v-select>
+
+      <!-- esse !selecao1, o operador ! é o operador lógico NOT -->
+       <!-- agora esse ? : é um operador ternário que tem forma: condição ? valor_se_verdadeiro : valor_se_falso -->
+
+      <v-select
+        :disabled="!selecao1"  
+      v-model="selecao2"
+      :items="selecao1 ? Object.keys(locais[selecao1]) : []"
+      @update:modelValu="selecao3=''"
+        label="Selecione um sub"
+        required
+        outlined
+        density="comfortable"
       ></v-select>
 
       <v-select
-        label="Selecione uma fruta"
-        required
-        outlined
-        density="comfortable"
-        :items="items"
-      ></v-select>
-
-      <v-select
-        label="Selecione uma fruta"
-        required
-        outlined
-        density="comfortable"
-        :items="items"
+      v-model="selecao3"
+      :disabled="!selecao2"
+      :items="selecao2 ? locais[selecao1][selecao2] : []"
+      label="Selecione um sub do sub"
+      required
+      outlined
+      density="comfortable"
       ></v-select>
 
       <v-menu
@@ -51,9 +61,9 @@
           <v-text-field
             v-bind="props"
             outlined
-            prepend-icon="mdi-calendar"
+            prepend-inner-icon="mdi-calendar"
             readonly
-            label="Selecione a data"
+            label="Selecione uma data"
             v-model="formatData"
           ></v-text-field>
         </template>
@@ -69,6 +79,20 @@
 export default {
   data() {
     return {
+      selecao1:'',
+      selecao2:'',
+      selecao3:'',
+      locais:{
+        'Brasil':{
+        'Ceará': ['Fortaleza', 'Canoa Quebrada', 'Jericoacoara', 'Guaramiranga'],
+        'Piauí': ['Teresina', 'Parnaíba', 'Floriano', 'Água Branca', 'Itaueira'],
+        'Maranhão': ['São Luís', 'Bacabal', 'Imperatriz', 'Barreirinhas'],
+      },
+      'Europa':{
+        'Itália': ['Pizza', 'Macarrão', 'Vinho', 'Massas em geral'],
+        'França': ['Croissant', 'Fondue', 'Baguette', 'Macaron'],
+      }
+      },
       items: ['Banana', 'Maçã', 'Laranja'],
       showDatePicker: false,
       date:'',
