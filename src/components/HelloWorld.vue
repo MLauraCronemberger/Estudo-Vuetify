@@ -1,9 +1,13 @@
 <template>
-  <v-container style="margin-top: 50px;">
+  <v-app-bar     scroll-behavior="fully-hide">
+
+  </v-app-bar>
+  <v-container style="margin-top: 50px">
     <v-card class="mt-6">
       <v-card-title>
         <h1>Teste Mockar Ideia Agendamento</h1>
       </v-card-title>
+
       <form>
         <v-text-field           
           label="Nome"
@@ -65,6 +69,8 @@
             readonly
             label="Selecione uma data"
             v-model="formatData"
+
+
           ></v-text-field>
         </template>
         <v-date-picker
@@ -75,7 +81,9 @@
       <v-btn variant="tonal" style="margin-left: 20px; margin-right: 40px;" @click="envioEmail" >Enviar por e-mail</v-btn>
       <v-btn variant="tonal" @click="envioTel" >Enviar por telefone</v-btn>
     </v-card>
+
   </v-container>
+
 </template>
 
 <script>
@@ -100,6 +108,8 @@ export default {
       items: ['Banana', 'Maçã', 'Laranja'],
       showDatePicker: false,
       date:'',
+      showTimePicker: false,
+      timeStep: null,
     }
   },
   computed:{
@@ -109,8 +119,6 @@ export default {
       return dateObj.toLocaleDateString('pt-BR');
     }
   },
-
-  methods:{
     envioEmail() {
   Swal.fire({
     title: "Digite o seu e-mail:",
@@ -183,5 +191,5 @@ envioTel() {
 
   }
 
-}
+
 </script>
