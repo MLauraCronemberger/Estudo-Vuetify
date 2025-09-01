@@ -12,6 +12,7 @@ declare module 'vue' {
     CKEditorComponent: typeof import('./src/components/CKEditorComponent.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     HorarioPicker: typeof import('./src/components/HorarioPicker.vue')['default']
+    QuillComponent: typeof import('./src/components/QuillComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
