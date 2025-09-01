@@ -10,7 +10,8 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^41.4.2",
+    "@ckeditor/ckeditor5-build-classic": "^39.0.2",
+    "@ckeditor/ckeditor5-integrations-common": "^2.2.3",
     "@ckeditor/ckeditor5-vue": "^7.3.0",
     "@date-io/date-fns": "^3.2.1",
     "@fontsource/roboto": "5.2.5",

@@ -82,19 +82,14 @@
       <v-btn variant="tonal" @click="envioTel" >Enviar por telefone</v-btn>
     </v-card>
 
-
-        <template>
-  <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
-</template>
-
-
-
+<CKEditorComponent/>
   </v-container>
 
 </template>
 
 <script>
 import Swal from 'sweetalert2'
+import CKEditorComponent from './CKEditorComponent.vue';
 
 export default {
   data() {
