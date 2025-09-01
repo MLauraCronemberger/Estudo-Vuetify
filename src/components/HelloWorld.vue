@@ -82,6 +82,13 @@
       <v-btn variant="tonal" @click="envioTel" >Enviar por telefone</v-btn>
     </v-card>
 
+
+        <template>
+  <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+</template>
+
+
+
   </v-container>
 
 </template>

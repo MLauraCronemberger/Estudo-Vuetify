@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
+    CKEditorComponent: typeof import('./src/components/CKEditorComponent.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     HorarioPicker: typeof import('./src/components/HorarioPicker.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
