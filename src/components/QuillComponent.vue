@@ -1,47 +1,76 @@
 <template>
   <div>
-    <QuillEditor
-      v-model="content"
-      :options="editorOptions"
-      style="height: 300px;"
-    />
-    <button @click="saveContent">Salvar</button>
+    <!-- aqui vai o editor -->
+    <div id="editor"></div>
+  </div>
+</template>
 
-    <div class="preview">
-      <h3>Preview:</h3>
-      <div v-html="content"></div>
-    </div>
+<script setup>
+import { onMounted } from 'vue'
+import Quill from 'quill'
+import 'quill/dist/quill.snow.css' // importa o tema snow (ou bubble)
+
+onMounted(() => {
+  const quill = new Quill('#editor', {
+    modules: {
+      toolbar: [
+        [{ header: [1, 2, false] }],
+        ['bold', 'italic', 'underline'],
+        [{ list: 'ordered' }, { list: 'bullet' }]
+      ],
+    },
+    placeholder: 'Compose an epic...',
+    theme: 'snow', // ou 'bubble'
+  })
+
+  // Exemplo: ouvindo mudanças no editor
+  quill.on('text-change', () => {
+    console.log(quill.root.innerHTML) // pega o HTML atual
+  })
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <template>
+  <div>
+    <QuillEditor
+      v-model:content="content"
+      content-type="html"
+      theme="snow"
+      :modules="modules"
+    />
+    <pre>{{ content }}</pre>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { QuillEditor } from 'vue3-quill'
-// npm install @vueup/vue-quill quill
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import 'quill/dist/quill.snow.css' // tema do Quill
 
-const content = ref('<p>Escreva algo aqui...</p>')
+const content = ref('')
 
-const editorOptions = {
-  theme: 'snow',
-  modules: {
-    toolbar: [
-      ['bold', 'italic', 'underline'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['link', 'image']
-    ]
-  }
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ['bold', 'italic', 'underline'],
+    ['image', 'code-block'],
+  ],
 }
-
-const saveContent = () => {
-  // Aqui você envia content.value para o backend
-  console.log('Conteúdo HTML a salvar:', content.value)
-}
-</script>
-
-<style>
-.preview {
-  margin-top: 20px;
-  border: 1px solid #ddd;
-  padding: 10px;
-}
-</style>
+</script> -->

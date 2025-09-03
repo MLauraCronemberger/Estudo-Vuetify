@@ -83,6 +83,8 @@
     </v-card>
 
 <CKEditorComponent/>
+
+
   </v-container>
 
 </template>
@@ -90,6 +92,8 @@
 <script>
 import Swal from 'sweetalert2'
 import CKEditorComponent from './CKEditorComponent.vue';
+// import Quill from 'quill';
+import QuillComponent from './QuillComponent.vue';
 
 export default {
   data() {
