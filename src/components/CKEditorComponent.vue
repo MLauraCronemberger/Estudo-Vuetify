@@ -36,7 +36,7 @@ const config = computed( () => {
     const { Essentials, Paragraph, Bold, Italic, List } = cloud.data.value.CKEditor;
 
     return {
-		licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NTgwNjcxOTksImp0aSI6IjEzZTE0ODc1LTJmZjMtNDkxOS05MThhLTEwZDk2YmYwYmNiZCIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjdiNGY0ZjI4In0.AIm1AbHx7ZfHPW92VSRQ2wcI7ChVsGBX19hfRTcPE0F3rl5gKJI_PUKYZbL4XOHUMYVRzBqiIsJcstn8-D8xfw',
+		licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3ODgzOTM1OTksImp0aSI6IjBjMjY4YmIzLTUwMzgtNDU4ZS1hM2Q0LTE1NWFhZTFjZWY5YSIsImxpY2Vuc2VkSG9zdHMiOlsiMTI3LjAuMC4xIiwibG9jYWxob3N0IiwiMTkyLjE2OC4qLioiLCIxMC4qLiouKiIsIjE3Mi4qLiouKiIsIioudGVzdCIsIioubG9jYWxob3N0IiwiKi5sb2NhbCJdLCJ1c2FnZUVuZHBvaW50IjoiaHR0cHM6Ly9wcm94eS1ldmVudC5ja2VkaXRvci5jb20iLCJkaXN0cmlidXRpb25DaGFubmVsIjpbImNsb3VkIiwiZHJ1cGFsIl0sImxpY2Vuc2VUeXBlIjoiZGV2ZWxvcG1lbnQiLCJmZWF0dXJlcyI6WyJEUlVQIiwiRTJQIiwiRTJXIl0sInZjIjoiNTE0M2I5ZmEifQ.iP_66prTzF5Q083D1GBG_O5GfhnhKmlCWj9wvGWabxkrrTDxbK_TrFWSFHnk5BH21IHnSMP8znOhcvHkz88oJQ',
         plugins: [ Essentials, Paragraph, Bold, Italic, List],
         toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', '|', 'bulletedList', 'numberedList'],
         contentStyles: {
