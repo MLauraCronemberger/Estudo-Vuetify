@@ -1,49 +1,25 @@
 /**
  * main.js
  *
- * Bootstraps Vuetify and other plugins then mounts the App`
+ * Bootstraps Vuetify and other plugins then mounts the App
  */
 
-// Plugins
-import { registerPlugins } from '@/plugins'
+// Vue
+import { createApp } from 'vue'
 
-// Components
+// App root
 import App from './App.vue'
 
-// Composables
-import { createApp } from 'vue'
-import { createVuetify } from 'vuetify'
-import { VTimePicker } from 'vuetify/labs/VTimePicker'
+// Plugins (Vuetify, Router, etc.)
+import { registerPlugins } from '@/plugins'
 
 // Styles
 import 'unfonts.css'
-import DateFnsAdapter from '@date-io/date-fns'
-import ptBR from 'date-fns/locale/pt-BR'
-import { pt } from 'vuetify/locale'
-
-
-
-const vuetify = createVuetify({
-    locale:{
-        locale: 'pt',
-        messages:{ pt }
-
-    },
-    date: {
-        adapter: DateFnsAdapter,
-        locale: {
-          pt: ptBR,
-        }},
-    components:{
-      VTimePicker
-    }
-
-})
 
 const app = createApp(App)
 
+// Registra TODOS os plugins (inclusive Vuetify)
 registerPlugins(app)
 
+// Monta a aplicação (sempre por último)
 app.mount('#app')
-
-app.use(vuetify)

@@ -1,5 +1,42 @@
 <template>
+
+      <v-container>
+    <v-row justify="space-around">
+      <v-col cols="11" sm="5">
+        <v-text-field
+          :model-value="time"
+          label="Picker in menu"
+          prepend-icon="mdi-clock-time-four-outline"
+          readonly
+        >
+          <v-menu
+            v-model="showMenu"
+            :close-on-content-click="false"
+            activator="parent"
+            min-width="0"
+          >
+            <v-time-picker v-model="time"></v-time-picker>
+          </v-menu>
+        </v-text-field>
+      </v-col>
+
+      <v-col cols="11" sm="5">
+        <v-text-field
+          :model-value="time"
+          label="Picker in dialog"
+          prepend-icon="mdi-clock-time-four-outline"
+          readonly
+        >
+          <v-dialog v-model="showDialog" activator="parent" width="auto">
+            <v-time-picker v-model="time"></v-time-picker>
+          </v-dialog>
+        </v-text-field>
+      </v-col>
+    </v-row>
+  </v-container>
   <v-container fluid max-width="600px" class="mt-6">
+
+
     <div>
       <v-card elevation="4" outlined class="card">
         <div class="cabecalho-form">
@@ -112,9 +149,12 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
-import { ref } from 'vue'
 
+  import { ref } from 'vue'
+
+  const time = ref(null)
+  const showMenu = ref(false)
+  const showDialog = ref(false)
 const horaInicio = ref(null)
 const horaFim = ref(null)
 const menuInicio = ref(false)
