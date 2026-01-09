@@ -1,42 +1,111 @@
 <template>
 
-      <v-container>
-    <v-row justify="space-around">
-      <v-col cols="11" sm="5">
-        <v-text-field
-          :model-value="time"
-          label="Picker in menu"
-          prepend-icon="mdi-clock-time-four-outline"
-          readonly
-        >
-          <v-menu
-            v-model="showMenu"
-            :close-on-content-click="false"
-            activator="parent"
-            min-width="0"
-          >
-            <v-time-picker v-model="time"></v-time-picker>
-          </v-menu>
-        </v-text-field>
-      </v-col>
+  <v-container fluid max-width="900px" class="mt-6">
+    <div>
+      <v-card elevation="4" outlined class="card">
+        <div class="cabecalho-form">
+          <h1 class="titulo-form">Selecione a Data do Evento</h1>
+          <p class="subtitulo">
+            Selecione abaixo a data do evento.
+          </p>
+        </div>
 
-      <v-col cols="11" sm="5">
-        <v-text-field
-          :model-value="time"
-          label="Picker in dialog"
-          prepend-icon="mdi-clock-time-four-outline"
-          readonly
-        >
-          <v-dialog v-model="showDialog" activator="parent" width="auto">
-            <v-time-picker v-model="time"></v-time-picker>
-          </v-dialog>
-        </v-text-field>
-      </v-col>
-    </v-row>
+        <v-card-text class="pa-4">
+          <!-- Toolbar de navegação -->
+          <v-sheet class="mb-4">
+            <v-toolbar flat>
+              <v-btn
+                class="me-4"
+                color="primary"
+                variant="outlined"
+                @click="setToday"
+              >
+                Hoje
+              </v-btn>
+              <v-btn
+                color="grey-darken-2"
+                size="small"
+                variant="text"
+                icon
+                @click="prev"
+              >
+                <v-icon size="small">mdi-chevron-left</v-icon>
+              </v-btn>
+              <v-btn
+                color="grey-darken-2"
+                size="small"
+                variant="text"
+                icon
+                @click="next"
+              >
+                <v-icon size="small">mdi-chevron-right</v-icon>
+              </v-btn>
+              <v-toolbar-title v-if="calendar">
+                {{ calendar.title }}
+              </v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-menu location="bottom end">
+                <template v-slot:activator="{ props }">
+                  <v-btn
+                    color="grey-darken-2"
+                    variant="outlined"
+                    v-bind="props"
+                  >
+                    <span>{{ typeToLabel[type] }}</span>
+                    <v-icon end>mdi-menu-down</v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item @click="type = 'day'">
+                    <v-list-item-title>Dia</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="type = 'week'">
+                    <v-list-item-title>Semana</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="type = 'month'">
+                    <v-list-item-title>Mês</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-toolbar>
+          </v-sheet>
+
+          <!-- Calendário -->
+          <v-sheet height="600">
+            <v-calendar
+              ref="calendar"
+              v-model="focus"
+              :events="events"
+              :type="type"
+              color="primary"
+              @click:date="selecionarData"
+            ></v-calendar>
+          </v-sheet>
+
+          <!-- Botão de avançar -->
+          <v-card-actions class="pa-0 pt-4">
+            <v-row justify="end">
+              <v-btn
+                color="primary"
+                variant="flat"
+                class="font-weight-bold"
+                :disabled="!dataSelecionada"
+                @click="avancar"
+              >
+                Próximo
+              </v-btn>
+            </v-row>
+          </v-card-actions>
+        </v-card-text>
+      </v-card>
+    </div>
   </v-container>
+
+ 
+
+
+
   <v-container fluid max-width="600px" class="mt-6">
-
-
     <div>
       <v-card elevation="4" outlined class="card">
         <div class="cabecalho-form">
@@ -149,12 +218,59 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-  import { ref } from 'vue'
 
-  const time = ref(null)
-  const showMenu = ref(false)
-  const showDialog = ref(false)
+const calendar = ref()
+
+const typeToLabel = {
+  month: 'Mês',
+  week: 'Semana',
+  day: 'Dia',
+}
+
+const focus = ref('')
+const type = ref('month')
+const events = ref([]) // Calendário em branco - sem eventos
+const dataSelecionada = ref(null)
+
+onMounted(() => {
+  calendar.value?.checkChange()
+})
+
+function selecionarData({ date }) {
+  dataSelecionada.value = date
+  console.log('Data selecionada:', date)
+}
+
+function setToday() {
+  focus.value = ''
+}
+
+function prev() {
+  calendar.value.prev()
+}
+
+function next() {
+  calendar.value.next()
+}
+
+function avancar() {
+  console.log('Avançando com a data:', dataSelecionada.value)
+  // router.push({ name: "proximaPagina" })
+}
+
+
+
+
+
+
+
+
+const time = ref(null)
+const showMenu = ref(false)
+const showDialog = ref(false)
 const horaInicio = ref(null)
 const horaFim = ref(null)
 const menuInicio = ref(false)
