@@ -15,5 +15,6 @@ declare module 'vue' {
     QuillComponent: typeof import('./src/components/QuillComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TesteHorario: typeof import('./src/components/TesteHorario.vue')['default']
   }
 }

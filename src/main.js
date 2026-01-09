@@ -13,6 +13,7 @@ import App from './App.vue'
 // Composables
 import { createApp } from 'vue'
 import { createVuetify } from 'vuetify'
+import { VTimePicker } from 'vuetify/labs/VTimePicker'
 
 // Styles
 import 'unfonts.css'
@@ -32,7 +33,10 @@ const vuetify = createVuetify({
         adapter: DateFnsAdapter,
         locale: {
           pt: ptBR,
-        }}
+        }},
+    components:{
+      VTimePicker
+    }
 
 })
 
